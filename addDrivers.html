@@ -1,0 +1,96 @@
+
+<style>
+p.field-wrapper input {
+    float: right;
+}
+p.required-field::before { 
+    content: "*";
+    float: right;
+    color: red;
+    margin-right: 38px;
+}
+</style>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid" style="background-color: black;">
+  
+    <ul class="nav navbar-nav">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Add<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/addVehicle">Vehicle</a></li>
+          <li><a href="#/addCustomer">Customer</a></li>
+         <li><a href="#/addSupplier">Supplier</a></li>
+          <li><a href="#/addDrivers">Driver</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">HourlyTrip<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/createTrip" >Create</a></li>
+          <li><a href="#/viewCustomerAmount"  ng-click="getCustomerAmount()" >Display</a></li>
+         <li><a href="#/viewVoucher"  ng-click="getVoucher()" >Voucher</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Supplier<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/supplierAmount">Add Expenditure</a></li>
+          <li><a href="#/viewSupplierAmount"  ng-click="getSupplierAmount()" >Display</a></li>
+        </ul>
+      </li>
+     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">User<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/addUser">Add</a></li>
+          <li><a href="#/deleteUser" ng-click="getUser()">Delete</a></li>
+        <li><a href="#/updateUser" ng-click="getUser()">Update</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">View<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/viewVehicleData" ng-click="getVehicleData()">Vehicle Details</a></li>
+          <li><a href="#/viewCustomerData" ng-click="getCustomerData()">Customer Details</a></li>
+         <li><a href="#/viewSupplierData" ng-click="getSupplierData()">Supplier Details</a></li>
+          <li><a href="#/viewDriverData" ng-click="getDriverData()">Driver Details</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href ng-click="logout()" ><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div style="border: 1px solid; width: 30%; margin: auto; height: 465px; border-radius: 8px; background-color: white; opacity: 0.8; margin-top: 80px;">
+ <br><center><h4><b>Add Driver</b></h4></center><br>
+
+	 <b> <p class="field-wrapper required-field" style="margin-top: 14px;   margin-left: -244px;  margin-bottom: -22px;">Driver Name : </p>  </b> 	
+	    	<input type="text" 
+			ng-model="driverss.driverName"style="height: 30px;margin-left: 140px;" ng-required="true">
+	   <br>
+	  
+	 <b> <p class="field-wrapper required-field" style="margin-top: 14px;   margin-left: -261px;  margin-bottom: -22px;">Address : </p>  </b> 
+	    	<input type="text" 
+			ng-model="driverss.address" style="height: 30px;margin-left: 140px;" ng-required="true">
+			  <br>
+	  
+	 <b> <p class="field-wrapper required-field" style="margin-top: 14px;   margin-left: -209px;  margin-bottom: -22px;">Contact Number : </p>  </b> 
+	    	<input type="number" 
+			ng-model="driverss.contactNumber"style="height: 30px;margin-left: 140px;" ng-required="true">
+			  <br>
+	 
+	 <b> <p class="field-wrapper required-field" style="margin-top: 14px;   margin-left: -273px;  margin-bottom: -22px;">Salary : </p>  </b> 
+	    	<input type="number" 
+			ng-model="driverss.salary" style="height: 30px;margin-left: 140px;">
+			  <br>
+	  
+	    <b> <p class="field-wrapper required-field" style="margin-top: 14px;   margin-left: -199px;  margin-bottom: -22px;">License Number : </p>  </b> 
+	   <input type="text" 
+			ng-model="driverss.licenseNumber"style="height: 30px;margin-left: 140px;">
+			  <br>
+	   
+	    <b> <p class="field-wrapper required-field" style="margin-top: 14px;   margin-left: -229px;  margin-bottom: -22px;">Joining Date : </p>  </b> 
+	   <input type="date" 
+			ng-model="driverss.joiningDate" style="height: 30px;margin-left: 140px;">
+			  <br>
+	   <br>
+	
+<button type="submit" ng-click="addDrivers(driverss)" class="btn btn-primary">submit</button>
+<button type="submit" ng-click="clearDrivers()" class="btn btn-primary">Clear</button>
+ </div>
