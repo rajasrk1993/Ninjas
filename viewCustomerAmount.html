@@ -1,0 +1,188 @@
+<style>
+p.field-wrapper input {
+    float: right;
+}
+p.required-field::before { 
+    content: "*";
+    float: right;
+    color: red;
+    margin-right: 38px;
+}
+</style>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid" style="background-color: black;">
+  
+    <ul class="nav navbar-nav">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Add<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/addVehicle">Vehicle</a></li>
+          <li><a href="#/addCustomer">Customer</a></li>
+         <li><a href="#/addSupplier">Supplier</a></li>
+          <li><a href="#/addDrivers">Driver</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">HourlyTrip<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/createTrip" >Create</a></li>
+         
+          <li><a href="#/viewCustomerAmount"  ng-click="getCustomerAmount()" >Display</a></li>
+        <li><a href="#/viewVoucher"  ng-click="getVoucher()" >Voucher</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Supplier<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/supplierAmount">Add Expenditure</a></li>
+          <li><a href="#/viewSupplierAmount"  ng-click="getSupplierAmount()" >Display</a></li>
+        </ul>
+      </li>
+     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">User<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/addUser">Add</a></li>
+          <li><a href="#/deleteUser" ng-click="getUser()">Delete</a></li>
+        <li><a href="#/updateUser" ng-click="getUser()">Update</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">View<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/viewVehicleData" ng-click="getVehicleData()">Vehicle Details</a></li>
+          <li><a href="#/viewCustomerData" ng-click="getCustomerData()">Customer Details</a></li>
+         <li><a href="#/viewSupplierData" ng-click="getSupplierData()">Supplier Details</a></li>
+          <li><a href="#/viewDriverData" ng-click="getDriverData()">Driver Details</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href ng-click="logout()" ><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div style="border: 1px solid; width: 70%; margin: auto; height: auto; border-radius: 8px; background-color: white; margin-top: 80px;">
+
+
+
+<br>
+<br>
+
+<div style="margin-left:-610px;">
+<p style="margin-left:-172px;"><b>FILTERS: </b></p>
+<p><b>Customer Name: </b></p><select ng-model="c.customerName" >
+        <option ng-repeat="customer in customers" value="{{customer}}">{{customer}}</option>
+      </select>
+		 <br>
+		</div>	 
+	  
+	   <div style="margin-left:9px; margin-top: -65px;">
+ <p><b>Start Date: </b></p>
+      <input type="date" class="form-control" style="height: 30px;" name="from" ng-model="from">
+      <br>
+  <p><b>End Date: </b></p><input type="date" class="form-control"  style="height: 30px;" name="to" ng-model="to">
+  
+<br>
+  </div>
+   <div style="margin-left:475px; margin-top: -56px;">
+  <br><button class="btn btn-primary"type="submit"  ng-click="clearFilters()">Clear Filters</button>
+  
+  </div>
+<div id="printable" style="display:none ">
+
+<p><b>Sri Lakshmi Earth Movers</b></p>
+<br>
+<br>
+  <p><b>From: {{from | date : "mediumDate"}} </b></p>
+<br>
+<p><b>To: {{to | date : "mediumDate"}} </b></p>
+<table    class="table table-striped "style="width:800px  ;border: 1px solid black" align="center">
+	
+	    <tr >
+	        <td style="border: 1px solid black;  border-collapse: collapse"><b>Customer Name </b></td>
+	         <td style="border: 1px solid black;  border-collapse: collapse"> <b>Date </b></td>
+	          <td style="border: 1px solid black;  border-collapse: collapse"> <b>Debit</b></td>
+	           <td style="border: 1px solid black;  border-collapse: collapse"> <b>Credit</b></td>
+	            <td style="border: 1px solid black;  border-collapse: collapse"> <b>Discount</b></td>
+	    </tr>
+	     <tr ng-repeat="customer in customerDetails  | filter:c |  myfilter:from:to | sumByKeyc:'total'" >
+	
+	        <td  ng-model="customer.customerName" style="border: 1px solid black;  border-collapse: collapse">{{customer.customerName}}</td>
+	          <td  ng-model="customer.dbDate" style="border: 1px solid black;  border-collapse: collapse">{{customer.dbDate | date : "mediumDate"}}</td>
+	            <td  ng-model="customer.amount" style="border: 1px solid black;  border-collapse: collapse">{{customer.amount}}</td>
+	            <td  ng-model="customer.amountPaid" style="border: 1px solid black;  border-collapse: collapse">{{customer.amountPaid}}</td>
+	             <td  ng-model="customer.discount" style="border: 1px solid black;  border-collapse: collapse">{{customer.discount}}</td>
+	       
+	    </tr>
+	    <br>
+	    <br>
+	    <tr ><td >Total Debit amount=</td> <td>{{getTotalDebit}}</td></tr>
+	      <tr  ><td>Total Credit amount=</td> <td>{{getTotalCredit}}</td></tr>
+	        <tr ><td>Total Discount amount=</td> <td>{{getTotalDiscount}}</td></tr>
+	             <tr ><td>Total Balance amount=</td> <td>{{getTotal}}</td></tr>
+    
+</table> </div>
+<table    class="table table-striped "style="width:800px"align="center">
+	
+	    <tr  >
+	    	<td ><b>CheckBox</b></td>
+	        <td ><b>Customer Name </b></td>
+	         <td> <b>Date </b></td>
+	          <td> <b>Debit</b></td>
+	           <td> <b>Credit</b></td>
+	           <td> <b>Discount</b></td>
+			<td ><b>UPDATE</b></td>
+			<td ><b>Details</b></td>
+			
+	    </tr>
+	     <tr ng-repeat="customer in customerDetails  | filter:c |  myfilter:from:to | sumByKeyc:'total'" >
+	   <td  >
+	  
+	   <input type="checkbox" ng-model="edit"  />
+			
+			</td>
+	        <td  ng-model="customer.customerName">{{customer.customerName}}</td>
+	          <td  ng-model="customer.dbDate">{{customer.dbDate | date : "mediumDate"}}</td>
+	            <td  ng-model="customer.amount">{{customer.amount}}</td>
+	            <td> <input type="number" style="height:30px;width:100px;" ng-model="customer.amountPaid" ng-disabled="!edit"></td>
+	                <td> <input type="number" style="height:30px;width:100px;" ng-model="customer.discount" ng-disabled="!edit"></td>
+			<td><button class="btn btn-primary" ng-disabled="!edit" type="submit"  ng-click="updateCustomerCredit(customer.customerName,customer.sheetNumber,customer.amountPaid,customer.discount)">update</button></td>
+            <td><button class="btn btn-primary" ng-disabled="!edit" type="submit" data-toggle="modal"data-target="#details" ng-click="customerAmountDetails(customer)">Details</button></td>
+	    </tr>
+	    <br>
+	    <br>
+	    <tr><td>Total Debit amount=</td> <td>{{getTotalDebit}}</td></tr>
+	      <tr><td>Total Credit amount=</td> <td>{{getTotalCredit}}</td></tr>
+	       <tr ><td>Total Discount amount=</td> <td>{{getTotalDiscount}}</td></tr>
+	        <tr><td>Total Balance amount=</td> <td>{{getTotal}}</td></tr>
+    
+</table> 
+
+<div id="details" class="modal hide fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+			<h3>Details</h3>
+		</div>
+		<div class="modal-body">
+		<b>Trip Sheet Number</b>: {{allCustomerDetails.sheetNumber}}<br><br>
+			<b>Customer Name</b>: {{allCustomerDetails.customerName}}<br><br>
+			<b>Date</b>: {{allCustomerDetails.dbDate}}<br><br>
+			<b>Debit</b>: {{allCustomerDetails.amount}}<br><br>
+			<b>Credit</b>: {{allCustomerDetails.amountPaid}}<br><br>
+			<b>Discount</b>: {{allCustomerDetails.discount}}<br><br>	
+			<b>Vehicle Id</b>: {{allCustomerDetails.vehicleId}}<br><br>	
+			<b>Driver Name</b>: {{allCustomerDetails.driverName}}<br><br>	
+			<b>Total Hours</b>: {{allCustomerDetails.totalHours}}<br><br>	
+			<b>Disel Amount</b>: {{allCustomerDetails.diselAmount}}<br><br>	
+				<b>Supplier Name</b>: {{allCustomerDetails.supplierName}}<br><br>	
+			<b>Added By</b>: {{allCustomerDetails.addedBy}}<br><br>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				aria-hidden="true">Close</button>
+		</div>
+	</div>
+
+<br>
+  <br><button class="btn btn-primary"type="submit"  ng-click="printDiv()">print</button>
+  <br>
+  <br>
+</div>

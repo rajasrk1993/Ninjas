@@ -1,0 +1,109 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid" style="background-color: black;">
+  
+    <ul class="nav navbar-nav">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Add<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/addVehicle">Vehicle</a></li>
+          <li><a href="#/addCustomer">Customer</a></li>
+         <li><a href="#/addSupplier">Supplier</a></li>
+          <li><a href="#/addDrivers">Driver</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">HourlyTrip<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/createTrip" >Create</a></li>
+          <li><a href="#/viewCustomerAmount"  ng-click="getCustomerAmount()" >Display</a></li>
+        <li><a href="#/viewVoucher"  ng-click="getVoucher()" >Voucher</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Supplier<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/supplierAmount">Add Expenditure</a></li>
+          <li><a href="#/viewSupplierAmount"  ng-click="getSupplierAmount()" >Display</a></li>
+        </ul>
+      </li>
+     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">User<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/addUser">Add</a></li>
+          <li><a href="#/deleteUser" ng-click="getUser()">Delete</a></li>
+        <li><a href="#/updateUser" ng-click="getUser()">Update</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">View<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/viewVehicleData" ng-click="getVehicleData()">Vehicle Details</a></li>
+          <li><a href="#/viewCustomerData" ng-click="getCustomerData()">Customer Details</a></li>
+         <li><a href="#/viewSupplierData" ng-click="getSupplierData()">Supplier Details</a></li>
+          <li><a href="#/viewDriverData" ng-click="getDriverData()">Driver Details</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href ng-click="logout()" ><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<br><br>
+<div style="border: 1px solid; width: 70%; margin: auto; height: auto; border-radius: 8px; background-color: white; margin-top: 80px;">
+
+<div id="printable" style="display:none ">
+
+<p><b>Sri Lakshmi Earth Movers</b></p>
+<br>
+<table    class="table table-striped "style="width:800px"align="center">
+	
+	    <tr  >
+	    	
+	        <td ><b>Supplier Name </b></td>
+	         <td> <b>Address </b></td>
+	          <td> <b>Contact Number</b></td>
+	           <td> <b>GST</b></td>
+			    <td> <b>Added By</b></td>
+			
+	    </tr>
+	     <tr ng-repeat="supplier in supplierData " >
+	  
+	        <td  style="border: 1px solid black;  border-collapse: collapse" ng-model="supplier.supplierName">{{supplier.supplierName}}</td>
+	          <td style="border: 1px solid black;  border-collapse: collapse"  ng-model="supplier.address">{{supplier.address}}</td>
+	            <td style="border: 1px solid black;  border-collapse: collapse"  ng-model="supplier.contactNumber">{{supplier.contactNumber}}</td>
+	          <td style="border: 1px solid black;  border-collapse: collapse" ng-model="supplier.GST">{{supplier.GST}}</td>
+	                <td style="border: 1px solid black;  border-collapse: collapse" ng-model="supplier.addedBy">{{supplier.addedBy}}</td>
+	                
+			  </tr>
+	   
+</table> 
+ </div>
+
+
+
+
+<div align="center"><table    class="table table-striped "style="width:800px"align="center">
+	
+	    <tr  >
+	    	
+	        <td ><b>Supplier Name </b></td>
+	         <td> <b>Address </b></td>
+	          <td> <b>Contact Number</b></td>
+	           <td> <b>GST</b></td>
+			    <td> <b>Added By</b></td>
+			
+	    </tr>
+	     <tr ng-repeat="supplier in supplierData " >
+	  
+	        <td  ng-model="supplier.supplierName">{{supplier.supplierName}}</td>
+	          <td  ng-model="supplier.address">{{supplier.address}}</td>
+	            <td  ng-model="supplier.contactNumber">{{supplier.contactNumber}}</td>
+	          <td  ng-model="supplier.GST">{{supplier.GST}}</td>
+	                <td  ng-model="supplier.addedBy">{{supplier.addedBy}}</td>
+	                
+			  </tr>
+	   
+</table> 
+</div>
+<br>
+  <br><button class="btn btn-primary"type="submit"  ng-click="printDiv()">print</button>
+  <br>
+<br>
+</div>

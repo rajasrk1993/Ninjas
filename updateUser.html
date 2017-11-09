@@ -1,0 +1,79 @@
+<style>
+p.field-wrapper input {
+    float: right;
+}
+p.required-field::before { 
+    content: "*";
+    float: right;
+    color: red;
+    margin-right: 38px;
+}
+</style>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid" style="background-color: black;">
+  
+    <ul class="nav navbar-nav">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Add<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/addVehicle">Vehicle</a></li>
+          <li><a href="#/addCustomer">Customer</a></li>
+         <li><a href="#/addSupplier">Supplier</a></li>
+          <li><a href="#/addDrivers">Driver</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">HourlyTrip<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/createTrip" >Create</a></li>
+          <li><a href="#/viewCustomerAmount"  ng-click="getCustomerAmount()" >Display</a></li>
+        <li><a href="#/viewVoucher"  ng-click="getVoucher()" >Voucher</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Supplier<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/supplierAmount">Add Expenditure</a></li>
+          <li><a href="#/viewSupplierAmount"  ng-click="getSupplierAmount()" >Display</a></li>
+        </ul>
+      </li>
+     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">User<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/addUser">Add</a></li>
+          <li><a href="#/deleteUser" ng-click="getUser()">Delete</a></li>
+        <li><a href="#/updateUser" ng-click="getUser()">Update</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">View<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/viewVehicleData" ng-click="getVehicleData()">Vehicle Details</a></li>
+          <li><a href="#/viewCustomerData" ng-click="getCustomerData()">Customer Details</a></li>
+         <li><a href="#/viewSupplierData" ng-click="getSupplierData()">Supplier Details</a></li>
+          <li><a href="#/viewDriverData" ng-click="getDriverData()">Driver Details</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href ng-click="logout()" ><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div style="border: 1px solid; width: 30%; margin: auto; height: 294px; border-radius: 8px; background-color: white; opacity: 0.8; margin-top: 80px;">
+<div><center><h3><b>Update User</b></h3></center></div>
+
+ <p  style="margin-top: 14px;   margin-left: 1px;  margin-bottom: -22px;">Please select a username from dropdown  </p>  </b>
+<br>
+<br>
+
+<div  style="margin-top: 14px;   margin-left: 20px;  margin-bottom: -22px;"><b >UserName : </b><select ng-model="user.userName" >
+        <option ng-repeat="user in userNames" value="{{user}}">{{user}}</option>
+      </select>  </div>
+      
+<br>
+ <b> <p class="field-wrapper required-field" style="margin-top: 14px;   margin-left: -200px;  margin-bottom: -22px;">New Password : </p>  </b> 
+<input type="text" 
+			ng-model="user.password"style="height: 30px;margin-left: 140px" ng-required="true">
+ 
+<br>
+<br>
+ <div><input type="button" ng-click="updateUser(user)" value="Submit" class="btn btn-primary"></div>
+
+</div>
